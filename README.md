@@ -6,8 +6,8 @@
 
 ## 📂 Estructura del Proyecto
 
-
-`
+---
+```
         │── src/                  # Código fuente de la prueba
         │   ├── Domain/           # Capa de dominio 
         │   │   ├── Shared/
@@ -26,7 +26,19 @@
         │   │   │   ├── RegisterUserUseCase.php   # Lógica de registro de usuario
         │   │   │   ├── RegisterUserRequest.php   # DTO para solicitud de registro
         │   │   │   ├── UserResponseDTO.php  
-`
-
+```
+---
 
 ## 🚀 Instalación
+
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/serforin0/Programador-Full-Stack-DT
+   cd src
+   ```
+
+2. Instala las dependencias con Composer:
+   ```bash
+   composer install
+   ```
