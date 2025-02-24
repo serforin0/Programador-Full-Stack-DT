@@ -1,6 +1,7 @@
 <?php
 
 use Domain\Shared\ValueObject\Name;
+require_once __DIR__ . '/../src/Domain/Shared/ValueObject/Name.php';
 
 class NameValueObjectTest extends \PHPUnit\Framework\TestCase
 {

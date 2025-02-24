@@ -1,2 +1,10 @@
 /cache/
 /config/development/
+
+
+# Ignorar la carpeta vendor
+/vendor/
+
+# Ignorar archivos relacionados con Composer
+composer.lock
+composer.phar

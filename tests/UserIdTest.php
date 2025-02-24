@@ -1,8 +1,12 @@
 <?php
 
-use Domain\Shared\ValueObject\UserId;
 
-class UserIdTest extends \PHPUnit\Framework\TestCase
+require_once __DIR__ . '/../src/Domain/Shared/ValueObject/UserId.php';
+
+use Domain\Shared\ValueObject\UserId;
+use PHPUnit\Framework\TestCase;
+
+class UserIdTest extends TestCase
 {
     public function testCreateUserId()
     {
