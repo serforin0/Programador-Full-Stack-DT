@@ -4,6 +4,15 @@ up:
 down:
 	docker-compose down
 
+stop:
+	docker-compose down
+
+start:
+	docker-compose up -d
+
+build:
+	docker-compose build --no-cache
+
 restart:
 	docker-compose down && docker-compose up -d
 
