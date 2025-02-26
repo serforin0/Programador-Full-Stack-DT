@@ -14,7 +14,8 @@ use Doctrine\DBAL\DriverManager;
 
 require_once __DIR__ . '/../src/Domain/User/UserRepositoryInterface.php';
 require_once __DIR__ . '/../src/Application/Infrastructure/Persistence/DoctrineUserRepository.php';
-require_once __DIR__ . '/../src/Domain/User';
+require_once __DIR__ . '/../src/Domain/User/User.php';
+
 
 class DoctrineUserRepositoryTest extends TestCase
 {
@@ -23,26 +24,26 @@ class DoctrineUserRepositoryTest extends TestCase
 
     protected function setUp(): void
     {
-        // Rutas de las entidades
+        
         $paths = [__DIR__ . '/../src/Domain/User'];
         $isDevMode = true;
 
-        // Configuración de Doctrine ORM (ahora con ORMSetup)
+        
         $config = ORMSetup::createAttributeMetadataConfiguration($paths, $isDevMode);
 
-        // Configuración de la base de datos en memoria
+       
         $connectionParams = [
             'driver' => 'pdo_sqlite',
-            'memory' => true, // Base de datos en memoria
+            'memory' => true, 
         ];
         
-        // Conexión a la base de datos con DriverManager
+        
         $connection = DriverManager::getConnection($connectionParams, $config);
 
-        // Creación del EntityManager
+        
         $this->entityManager = new EntityManager($connection, $config);
 
-        // Creación del esquema en memoria
+        
         $schemaTool = new SchemaTool($this->entityManager);
         $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata();
         if (empty($metadata)) {
@@ -50,7 +51,7 @@ class DoctrineUserRepositoryTest extends TestCase
         }
         $schemaTool->createSchema($metadata);
 
-        // Instancia del repositorio
+        
         $this->repository = new DoctrineUserRepository($this->entityManager);
     }
 

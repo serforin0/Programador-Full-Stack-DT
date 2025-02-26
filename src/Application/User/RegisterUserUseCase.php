@@ -3,14 +3,12 @@
 namespace Application\User;
 
 use Domain\User\UserRepositoryInterface;
+use Domain\User\User;
+use Domain\Shared\ValueObject\UserId;
 use Domain\Shared\ValueObject\Name;
 use Domain\Shared\ValueObject\Email;
 use Domain\Shared\ValueObject\Password;
-use Domain\Shared\ValueObject\UserId;
-use Domain\User\User;
 use Domain\Exceptions\UserAlreadyExistsException;
-use Application\User\RegisterUserRequest;
-use Application\User\UserResponseDTO;
 
 class RegisterUserUseCase
 {
@@ -21,31 +19,25 @@ class RegisterUserUseCase
         $this->userRepository = $userRepository;
     }
 
-    public function execute(RegisterUserRequest $request): UserResponseDTO
+    public function execute(RegisterUserRequest $request): User
     {
-        
-        $existingUser = $this->userRepository->findById(new UserId($request->getId()));
-        if ($existingUser) {
+        // Verifica si el usuario ya existe
+        if ($this->userRepository->findByEmail(new Email($request->getEmail()))) {
             throw new UserAlreadyExistsException();
         }
 
-        
-        $name = new Name($request->getName());
-        $email = new Email($request->getEmail());
-        $password = new Password($request->getPassword());
+        // Crea un nuevo usuario
+        $user = new User(
+            new UserId($request->getId()),
+            new Name($request->getName()),
+            new Email($request->getEmail()),
+            new Password($request->getPassword())
+        );
 
-        
-        $user = new User(new UserId($request->getId()), $name, $email, $password);
-
-       
+        // Guarda el usuario
         $this->userRepository->save($user);
 
-        
-        return new UserResponseDTO(
-            $user->getId()->getValue(),
-            $user->getName()->getValue(),
-            $user->getEmail()->getValue(),
-            $user->getCreatedAt()->format('Y-m-d H:i:s')
-        );
+        // Devuelve el usuario creado
+        return $user;
     }
 }

@@ -54,7 +54,12 @@ class User
 
     public function getPassword(): Password
     {
-        return new Password($this->password);
+        return new Password($this->password); 
+    }
+
+    public function verifyPassword(string $password): bool
+    {
+        return password_verify($password, $this->password);
     }
 
     public function getCreatedAt(): \DateTimeImmutable

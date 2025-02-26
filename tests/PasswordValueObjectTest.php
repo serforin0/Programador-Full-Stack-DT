@@ -2,8 +2,7 @@
 
 use Domain\Shared\ValueObject\Password;
 use Domain\Exceptions\WeakPasswordException;
-require_once __DIR__ . '/../src/Domain/Shared/ValueObject/Password.php';
-require_once __DIR__ . '/../src/Domain/Exceptions/WeakPasswordException.php';
+
 
 class PasswordValueObjectTest extends \PHPUnit\Framework\TestCase
 {

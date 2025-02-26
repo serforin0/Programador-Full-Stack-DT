@@ -2,6 +2,13 @@
 
 namespace Application\User;
 
+use Domain\User\User;
+use Domain\Shared\ValueObject\UserId;
+use Domain\Shared\ValueObject\Name;
+use Domain\Shared\ValueObject\Email;
+use Domain\Shared\ValueObject\Password;
+use Domain\Event\UserRegisteredEvent;
+
 class RegisterUserRequest
 {
     private string $id;
@@ -35,5 +42,11 @@ class RegisterUserRequest
     public function getPassword(): string
     {
         return $this->password;
+    }
+
+    
+    public function toUserRegisteredEvent(User $user): UserRegisteredEvent
+    {
+        return new UserRegisteredEvent($user);
     }
 }

@@ -30,6 +30,10 @@ class Password
 
     public function verify(string $password): bool
     {
+        // Depuración: mostrar valores
+        echo "Password to verify: $password\n"; // La contraseña proporcionada
+        echo "Stored Hash: {$this->value}\n"; // El hash almacenado
+    
         return password_verify($password, $this->value);
     }
 }

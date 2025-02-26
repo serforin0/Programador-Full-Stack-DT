@@ -1,0 +1,14 @@
+doctrine:
+    dbal:
+        driver: 'pdo_sqlite'
+        memory: true
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        mappings:
+            YourNamespace:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Domain/User'
+                prefix: 'Domain\User'
+                alias: YourNamespace

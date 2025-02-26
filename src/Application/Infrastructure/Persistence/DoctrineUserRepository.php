@@ -5,6 +5,7 @@ namespace Infrastructure\Persistence;
 use Domain\User\UserRepositoryInterface;
 use Domain\User\User;
 use Domain\Shared\ValueObject\UserId;
+use Domain\Shared\ValueObject\Email;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 
@@ -44,5 +45,11 @@ class DoctrineUserRepository implements UserRepositoryInterface
                 throw $e;
             }
         }
+    }
+
+    public function findByEmail(Email $email): ?User
+    {
+        
+        return $this->repository->findOneBy(['email' => $email->getValue()]);
     }
 }
