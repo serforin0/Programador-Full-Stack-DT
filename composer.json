@@ -4,12 +4,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Domain\\": "src/"
+            "Domain\\": "src/Domain/",
+            "Application\\": "src/Application/",
+            "Infrastructure\\": "src/Infrastructure/",
+            "Domain\\User\\": "src/Domain/User/"
         }
     },
     "require": {
-        "doctrine/orm": "^3.3",
         "doctrine/dbal": "^4.2",
-        "doctrine/migrations": "^3.8"
+        "doctrine/migrations": "^3.8",
+        "doctrine/orm": "^3.3",
+        "symfony/cache": "^7.2"
     }
 }

@@ -2,16 +2,19 @@
 
 namespace Domain\Shared\ValueObject;
 
-final class Email
+use Domain\Exceptions\InvalidEmailException;
+
+class Email
 {
     private string $value;
 
-    public function __construct(string $value)
+    public function __construct(string $email)
     {
-        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            throw new \InvalidArgumentException("Invalid email format.");
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidEmailException();
         }
-        $this->value = $value;
+
+        $this->value = $email;
     }
 
     public function getValue(): string
@@ -19,8 +22,9 @@ final class Email
         return $this->value;
     }
 
+  
     public function equals(Email $other): bool
     {
-        return $this->value === $other->getValue();
+        return strtolower($this->value) === strtolower($other->getValue());
     }
 }

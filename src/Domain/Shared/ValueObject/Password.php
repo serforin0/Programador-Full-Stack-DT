@@ -2,17 +2,25 @@
 
 namespace Domain\Shared\ValueObject;
 
-final class Password
+use Domain\Exceptions\WeakPasswordException;
+
+class Password
 {
     private string $value;
 
-    public function __construct(string $value)
+    public function __construct(string $password)
     {
-        if (strlen($value) < 8) {
-            throw new \InvalidArgumentException("Password must be at least 8 characters long.");
+        if (!$this->isValidPassword($password)) {
+            throw new WeakPasswordException();
         }
+
         
-        $this->value = password_hash($value, PASSWORD_DEFAULT); 
+        $this->value = password_hash($password, PASSWORD_BCRYPT);
+    }
+
+    private function isValidPassword(string $password): bool
+    {
+        return preg_match('/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/', $password);
     }
 
     public function getValue(): string
@@ -20,8 +28,8 @@ final class Password
         return $this->value;
     }
 
-    public function verify(string $plainPassword): bool
+    public function verify(string $password): bool
     {
-        return password_verify($plainPassword, $this->value);
+        return password_verify($password, $this->value);
     }
 }

@@ -8,33 +8,33 @@
 
 ---
 ```
-│── src/                     # Código fuente de la aplicación
-│   ├── Domain/              # Capa de dominio (Reglas de negocio y entidades)
+│── src/                    
+│   ├── Domain/             
 │   │   ├── Shared/
 │   │   │   ├── ValueObject/
-│   │   │   │   ├── UserId.php         # Identificador único del usuario
-│   │   │   │   ├── Name.php           # Validación del nombre del usuario
-│   │   │   │   ├── Email.php          # Validación del email
-│   │   │   │   ├── Password.php       # Manejo seguro de contraseñas
+│   │   │   │   ├── UserId.php       
+│   │   │   │   ├── Name.php           
+│   │   │   │   ├── Email.php          
+│   │   │   │   ├── Password.php       
 │   │   ├── User/
-│   │   │   ├── User.php               # Entidad de usuario
-│   │   │   ├── UserRepositoryInterface.php  # Interfaz del repositorio de usuarios
+│   │   │   ├── User.php              
+│   │   │   ├── UserRepositoryInterface.php
 │   │   │   ├── Event/
-│   │   │   │   ├── UserRegisteredEvent.php  # Evento de usuario registrado
-│   ├── Application/        # Capa de aplicación (Casos de uso y lógica de aplicación)
+│   │   │   │   ├── UserRegisteredEvent.php 
+│   ├── Application/        
 │   │   ├── User/
-│   │   │   ├── RegisterUserUseCase.php   # Lógica de registro de usuario
-│   │   │   ├── RegisterUserRequest.php   # DTO para solicitud de registro
-│   │   │   ├── UserResponseDTO.php       # DTO para respuesta de usuario
-│   ├── Infrastructure/     # Capa de infraestructura (Persistencia y Controladores)
+│   │   │   ├── RegisterUserUseCase.php   
+│   │   │   ├── RegisterUserRequest.php  
+│   │   │   ├── UserResponseDTO.php     
+│   ├── Infrastructure/    
 │   │   ├── Controller/
-│   │   │   ├── RegisterUserController.php  # Controlador HTTP para registro de usuario
+│   │   │   ├── RegisterUserController.php  
 │   │   ├── Persistence/
-│   │   │   ├── DoctrineUserRepository.php  # Implementación del repositorio con Doctrine
-│── config/                 # Configuraciones del sistema
-│── tests/                  # Pruebas unitarias y de integración
-│── docker-compose.yml      # Configuración de Docker
-│── Makefile                # Comandos para inicialización rápida
+│   │   │   ├── DoctrineUserRepository.php  
+│── config/                
+│── tests/                  
+│── docker-compose.yml      
+│── Makefile                
 │── README.md  
 ```
 ---
